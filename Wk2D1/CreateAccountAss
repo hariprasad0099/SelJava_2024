@@ -1,0 +1,84 @@
+package w1.D1;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
+
+public class CreateAccountAss {
+
+	public static void main(String[] args) throws InterruptedException {
+		// TODO Auto-generated method stub
+		
+		/*
+		 * - Initialize the WebDriver (ChromeDriver). 
+		 * 
+		 * - Load the URL http://leaftaps.com/opentaps/. 
+		 * - Maximize the browser window.
+		 */
+		ChromeDriver driver = new ChromeDriver();
+		driver.get("http://leaftaps.com/opentaps");
+		driver.manage().window().maximize();
+		
+		//Enter a username and password. 
+		driver.findElement(By.id("username")).sendKeys("DemoSalesManager");
+		
+		//Click the "Login" button. 
+		driver.findElement(By.id("password")).sendKeys("crmsfa");
+		driver.findElement(By.className("decorativeSubmit")).click();
+		
+		//Click on the "CRM/SFA" link. 
+		driver.findElement(By.partialLinkText("CRM/SFA")).click();
+		
+		//Click on the "Accounts" tab.
+		driver.findElement(By.linkText("Accounts")).click();
+		
+		//click on the "Create Account" button.
+		driver.findElement(By.linkText("Create Account")).click();
+		
+		//Enter an account name. 
+		driver.findElement(By.id("accountName")).sendKeys("MHari0099");
+		
+		//Enter a description as "Selenium Automation Tester."
+		driver.findElement(By.name("description")).sendKeys("Selenium Automation Tester.");
+		
+		//Select "ComputerSoftware" as the industry.
+		WebElement IndustryDropdown = driver.findElement(By.name("industryEnumId"));
+		Select options = new Select(IndustryDropdown);
+		options.selectByVisibleText("Computer Software");
+		
+		//- Select "S-Corporation" as ownership using SelectByVisibleText. 
+		WebElement OwnerShipDropdown = driver.findElement(By.name("ownershipEnumId"));
+		Select ownershipOptions = new Select(OwnerShipDropdown);
+		ownershipOptions.selectByVisibleText("S-Corporation");
+		
+		//- Select "Employee" as the source using SelectByValue. 
+		WebElement sourceDropdown = driver.findElement(By.id("dataSourceId"));
+		Select sourceOptions = new Select(sourceDropdown);
+		sourceOptions.selectByValue("LEAD_EMPLOYEE");
+		
+		//- Select "eCommerce Site Internal Campaign" as the marketing campaign using SelectByIndex. 
+		WebElement marketingCampaignDropDown = driver.findElement(By.id("marketingCampaignId"));
+		Select marketingCampaignOptions = new Select(marketingCampaignDropDown);
+		marketingCampaignOptions.selectByIndex(5);
+		
+		//- Select "Texas" as the state/province using SelectByValue. 
+		WebElement stateProvinceDropDown = driver.findElement(By.id("generalStateProvinceGeoId"));
+		Select stateProvinceOptions = new Select(stateProvinceDropDown);
+		stateProvinceOptions.selectByValue("TX");
+		
+		//- Click the "Create Account" button. 
+		driver.findElement(By.className("smallSubmit")).click();
+		
+		//- Verify that the account name is displayed correctly. 
+		String text = driver.findElement(By.xpath("(//span[@class='tabletext'])[3]")).getText();
+		if (text.contains("MHari0099")){
+			System.out.println("The Correct Account name is entered");
+		}
+		//- Close the browser window.
+		Thread.sleep(5000);
+		driver.close();
+
+	}
+
+}
