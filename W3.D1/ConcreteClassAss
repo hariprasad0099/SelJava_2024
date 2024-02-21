@@ -1,0 +1,33 @@
+package w3.D2;
+
+public class ConcreteClass implements DatabseConnection {
+	
+	@Override
+	public void connect() {
+		System.out.println("Connect the DB");
+		
+	}
+
+	@Override
+	public void disconnect() {
+		System.out.println("DisConnect the DB");
+		
+	}
+
+	@Override
+	public void executeUpdate() {
+		System.out.println("Execute the command in the DB");
+		
+	}
+
+
+	public static void main(String[] args) {
+		ConcreteClass obj = new ConcreteClass();
+		obj.connect();
+		obj.disconnect();
+		obj.executeUpdate();
+
+	}
+
+	
+}
