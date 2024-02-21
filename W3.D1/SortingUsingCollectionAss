@@ -1,0 +1,30 @@
+package w3.D2;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+public class SortingUsingCollection {
+
+	public static void main(String[] args) {
+		//Declare a String array and add the values as {HCL, Wipro, Aspire Systems, CTS} 
+		
+		String[] arr = {"HCL" , "Wipro", "AspireSystems", "CTS"};
+		//Add the collection to a list 
+		List<String> company = new ArrayList<String>();
+		for (int i = 0; i < arr.length; i++) {
+			company.add(arr[i]);		
+		}
+		Collections.sort(company);
+	
+
+		//Print the required output as Wipro, HCL, CTS, Aspire Systems
+		for (int i = company.size()-1; i >=0 ; i--) {
+			System.out.print(" "+company.get(i)+ ",");
+			
+		}
+	
+
+	}
+
+}
